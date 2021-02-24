@@ -53,12 +53,15 @@
                             <td><?php echo $value['id']?></td>
                             <td><?php echo $value['name']?></td>
                             <td><?php echo $value['parent_id']?></td>
-                            
-                            <td><img src="upload/images_cate/<?php echo $value['avatar']?>" alt="" width="100px"></td>
                             <td>
-                                <button class="btn btn-primary" type="submit"><a href="index.php?c=admin&mod=category&act=edit&id=<?php echo $value['id']?>" >Chỉnh sửa</a> </button>
-                                <button class="btn btn-primary" type="submit"><a href="index.php?c=admin&mod=category&act=delete&id=<?php echo $value['id']?>" >Xóa</a> </button>
+                                <img src="upload/images_cate/<?php echo $value['avatar']?>" alt="" width="100px">
                             </td>
+                            <td>
+                                <a href="index.php?mod=user&act=show&id=<?php echo $value['id']?>" class="btn btn-primary">Detail</a>
+                                <a href="index.php?c=admin&mod=category&act=edit&id=<?php echo $value['id']?>" class="btn btn-success">Edit</a>
+                                <a href="index.php?c=admin&mod=category&act=delete&id=<?php echo $value['id']?>" class="btn btn-danger">Delete</a>
+                            </td>
+                              
                           </tr>
                        <?php } ?>
                        

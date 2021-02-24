@@ -1,12 +1,21 @@
 <?php
-    class connect{
-        public function connection(){
-            $servername="localhost";
-            $username="root";
-            $password = "";
-            $dbname = "qlthuvien";
+    class Connection{
+        private $servername;
+        private $username;
+        private $password;
+        private $dbname;
 
-            $conn =  mysqli_connect($servername,$username,$password,$dbname);
+            function __construct() {
+                $this->servername = 'localhost';
+                $this->username = 'root';
+                $this->password = '';
+                $this->dbname = 'qlthuvien';
+            }
+    
+           
+            function connect(){
+
+            $conn =  mysqli_connect($this->servername,$this->username,$this->password,$this->dbname);
             // if($conn->connect_errno){
             //     echo "fail" .  $conn->connect_error;
             //     exit(); 

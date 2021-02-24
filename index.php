@@ -15,13 +15,21 @@ class App{
 			$this->act = $_GET['act'];
 		}
 		$this->params['id'] = isset($_GET['id']) ? $_GET['id'] : [];
+	
+		$data['data'] = $_POST;
+		// // var_dump($data);
+
+        // $data[] = $_FILES;
+
+        $this->params['data'] = $data;
 	}
 	public function action(){
 		$class  = ucfirst($this->mod).ucfirst($this->c).'Controller';
 		$path = 'controllers/'.$this->c.'/'.$class.'.php';
 		require_once $path;
 		$obj = new $class();
-
+		$data = $_POST;
+        $this->params['data']=$data;
 		call_user_func_array([$obj,$this->act],$this->params);
 	}
 }
