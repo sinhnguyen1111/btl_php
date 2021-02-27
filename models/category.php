@@ -10,55 +10,23 @@ require_once 'models/Model.php';
            $this->table = 'categories';
         }
 
-        // public function getAll(){
-        //     return $this->select($this->table);
-        //     // $query  = "select * from categories";
-           
-        //     // $result = $this->conn->query($query);
-        //     // $data = array();
-        //     // while($row=$result->fetch_assoc()){
-        //     //     $data[]=$row;
-        //     // }
-        //     // return $data;
-        // }
-
-        // public function addCategory(){
-        //     // die();
-          
-            
-            
-        //     $upload = new Upload();
-        //     $upload_obj = $upload->upload_file('upload/images_cate','uploadfile');
-        //     $data['data']['avatar']=$upload_obj;
-        //     // $upload = new Upload();
-        //     // $upload_obj = $upload->upload_file('upload/images_cate','uploadfile');
-            
-        //     // $query ="insert into categories (name,parent_id,content,avatar) values ('".$data['name']."','".$data['parent_id']."','".$data['content']."','".$upload_obj."')";
-        //     // $result = $this->conn->query($query);
-        //     // return $result;
-        //     return $this->insert($this->table,$data['data']);
-        // }
-
         public function update($data){
             $data=$_POST;
 
             $upload = new Upload();
             $upload_obj = $upload->upload_file('upload/images_cate','uploadfile');
            
-            $query = "update categories set name='".$data['name']."',parent_id='".$data['parent_id']."',content='".$data['content']."',avatar='".$upload_obj."' where id=".$data['id'];
+            $query = "update categories set name_category='".$data['name']."',parent_id='".$data['parent_id']."',content='".$data['content']."',avatar='".$upload_obj."' where id=".$data['id'];
 
             $result = $this->conn->query($query);
+            if($result) {
+                setcookie('msg',"Chỉnh sửa thành công",time() + 2);
+            } else {
+                setcookie('msg',"Chỉnh sửa thành công",time() + 2);
+            }
             return $result;
         }
 
-        public function delete($id){
-            $id = $_GET['id'];
-            $query = "DELETE from categories where id=".$id;
-            
-            $result = $this->conn->query($query);
-            return $result;
-        }
-        //Tìm một bản ghi
         public function find($id){
             $id = $_GET['id'];
             $query = "SELECT * FROM categories WHERE id=".$id;
@@ -71,6 +39,6 @@ require_once 'models/Model.php';
 		    return $row;
 
         }
-        public function slug(){}
+        
     }
 ?>

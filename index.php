@@ -1,4 +1,6 @@
 <?php
+session_start();
+// session_destroy();
 class App{
 	private $c="admin";//admin,client
 	private $mod="home";

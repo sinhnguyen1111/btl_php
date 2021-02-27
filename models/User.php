@@ -15,7 +15,15 @@ require_once 'models/Model.php';
             $query = "update users set name='".$data['name']."',card_id='".$data['card_id']."',email='".$data['email']."',password='".$data['password']."',adress='".$data['adress']."',role='".$data['role']."',avatar='".$upload_obj."' where id=".$data['id'];
          
             $result = $this->conn->query($query);
+            if($result) {
+                setcookie('msg',"Chỉnh sửa thành công",time() + 2);
+            } else {
+                setcookie('msg',"Chỉnh sửa thành công",time() + 2);
+            }
             return $result;
         }
+        // public function getUserByEmail($email_login){
+        //     return $this->getEmail($this->table,$email_login);
+        // }
     }
 ?>

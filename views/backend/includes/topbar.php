@@ -10,6 +10,7 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Contact</a>
             </li>
+            
         </ul>
 
         <!-- SEARCH FORM -->
@@ -116,5 +117,10 @@
                     <i class="fas fa-th-large"></i>
                 </a>
             </li>
+            <!-- <li class="nav-item d-none d-sm-inline-block">
+                <a href="index.php?mod=auth&c=admin&act=logout" class="nav-link">Logout</a>
+            </li> -->
+            <form action="index.php?mod=auth&c=admin&act=logout" method="post">
+            <button type="submit" name="btn_logout">Logout</button></form>
         </ul>
     </nav>

@@ -13,7 +13,15 @@
     </div><!-- /.row -->
 </div><!-- /.container-fluid -->
 <!-- Content -->
+<?php
+		if(isset($_COOKIE['msg'])){?>
+		<div class="alert alert-success"  style="width: 28%;">
+			<strong>Thông báo: </strong>
+			<?php echo $_COOKIE['msg']?>
+		</div>
+	<?php }?>
 <div class="container-fluid">
+
     <!-- Main row -->
     <div class="row">
 
@@ -33,13 +41,18 @@
                     </div>
                 </div>
                 <!-- /.card-header -->
+               
+                    <a href="index.php?mod=category&c=admin&act=create"><button class="btn btn-primary" >Thêm mới</button></a>
+              
+               
                 <div class="card-body table-responsive p-0">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                            <th>#</th>
+                                <!-- <th>ID</th> -->
                                 <th>Tên danh mục</th>
-                                <th>Parent_id</th>
+                                <!-- <th>Parent_id</th> -->
                                 <th>Ảnh minh họa</th>
                                 <th>Hành động</th>
                             </tr>
@@ -47,17 +60,19 @@
                         </thead>
                         <tbody>
                           <?php
+                          $i=0;
                             foreach($cate as $value){
+                                $i++;
                           ?>
                           <tr>
-                            <td><?php echo $value['id']?></td>
-                            <td><?php echo $value['name']?></td>
-                            <td><?php echo $value['parent_id']?></td>
+                            <td><?php echo $i?></td>
+                            <td><?php echo $value['name_category']?></td>
+                           
                             <td>
                                 <img src="upload/images_cate/<?php echo $value['avatar']?>" alt="" width="100px">
                             </td>
                             <td>
-                                <a href="index.php?mod=user&act=show&id=<?php echo $value['id']?>" class="btn btn-primary">Detail</a>
+                                <a href="index.php?mod=category$c=admin&act=show&id=<?php echo $value['id']?>" class="btn btn-primary">Detail</a>
                                 <a href="index.php?c=admin&mod=category&act=edit&id=<?php echo $value['id']?>" class="btn btn-success">Edit</a>
                                 <a href="index.php?c=admin&mod=category&act=delete&id=<?php echo $value['id']?>" class="btn btn-danger">Delete</a>
                             </td>

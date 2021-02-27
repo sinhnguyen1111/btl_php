@@ -47,7 +47,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên danh mục</label>
-                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm " name="name" value="<?php echo $category['name']?>">
+                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm " name="name" value="<?php echo $category['name_category']?>">
                         </div>
                         <div class="form-group">
                             <label>Danh mục sản phẩm</label>
@@ -74,7 +74,7 @@
                             <label for="exampleInputFile">Hình ảnh danh mục</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="uploadfile">
+                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="uploadfile" >
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     
                                 </div>

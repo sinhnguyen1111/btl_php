@@ -10,9 +10,6 @@ class Model{
     }
     public function select(){
         $query = "select * from $this->table order by created_at DESC";
-        // echo $query;
-        // die();
-        // $conn = new Connect();
         $result = $this->conn->query($query);
         $data=array();
         while($row = $result->fetch_assoc()){
@@ -20,6 +17,7 @@ class Model{
         }
         return $data;
     }
+//================================================================
      public function insert($data){
         $query = "insert into $this->table";
 
@@ -41,11 +39,18 @@ class Model{
         
         $string = '('.$string1.')'.' values '.' ('.$string2.')';
         $query.=$string;
-        // echo $query;
+       
         $result = $this->conn->query($query);
+        if($result){
+            setcookie('msg','Thêm mới thành công',time()+5);
+        }
+        else{
+            setcookie('msg','Thêm mới không thành công',time()+5);
+        }
         return $result;
        
     }
+//==================================================================
     public function show_edit($id) {
         $query = "SELECT * FROM $this->table where id = " . $id;
 
@@ -56,6 +61,7 @@ class Model{
         $status = $result->fetch_assoc();
         return $status;
     }
+//===============================================================
     public function update($data){
         
 		$query = "UPDATE $this->table SET ";
@@ -73,23 +79,27 @@ class Model{
 		}
 		$string = $string_1.$string_2;
         $query = $query.$string;
-   echo $query;
-   die();
+//    echo $query;
+//    die();
 		$result = $this->conn->query($query);
 		return $result;
 
     }
+//=======================================================
     public function delete($id){
         $query = "DELETE FROM $this->table where id = " . $id;
-        
+        // echo $query;
+        // die();
         $result = $this->conn->query($query);
         if($result) {
             setcookie('msg',"Xóa thành công",time() + 2);
         } else {
             setcookie('msg',"Xóa không thành công",time() + 2);
         }
+        
         return $result;
     }
+ //=====================================
     public function detail($id){
         $query = "SELECT * FROM  $this->table where id = " . $id;
 
@@ -102,6 +112,54 @@ class Model{
 
         return $data;
     }
+//=============================================
+    public function getUserByName($email) {
+        $query = "SELECT * FROM $this->table where email=" . "'" .  $email . "'";
+
+        $result = $this->conn->query($query);
+        $user = $result->fetch_assoc();
+        return $user;
+    }
+//=========================================
+    public function search($name){
+        $name = $_POST['search'];
+        // books inner join categories where books.category_id = categories.id AND name LIKE '%s%' order by name DESC
+        $query = "select * from $this->table inner join categories where books.category_id = categories.id AND name LIKE '%".$name."%' order by name DESC";
+        $result = $this->conn->query($query);
+
+        $categories = array();
+        while($row = $result->fetch_assoc()){
+             $categories[]=$row;
+        }
+        return $categories;
+    }
+//=========================================================
+public function select_category(){
+    $query = "select books.id,books.name,books.author,books.title,books.content,books.quanlity,books.image,books.created_at,categories.name_category from books inner join categories on books.category_id = categories.id";
+    // echo $query;
+    // die();
+    $result = $this->conn->query($query);
+    $categories = array();
+   while($row = $result->fetch_assoc()){
+        $categories[]=$row;
+   }
+   return $categories;
+}
+//=============================================================
+public function getBookNew(){
+    $query = "select * from $this->table  ORDER BY created_at DESC limit 5";
+    // echo $query;
+    // die();
+    $result = $this->conn->query($query);
+    $book = array();
+    while($row = $result->fetch_assoc()){
+        $book[]=$row;
+   }
+   return $book;
+
+
+    // echo $query;
+}
 
 }
 

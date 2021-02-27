@@ -1,14 +1,16 @@
 <?php
-require_once 'controllers/controller.php';
+// require_once 'controllers/controller.php';
 require_once 'models/User.php';
 require_once 'models/upload_file.php';
-class UserAdminController extends controller{
+require_once 'controllers/admin/AdminController.php';
+class UserAdminController extends AdminController{
     protected $model;
     public function __construct(){
         $this->model = new User();
     }
     public function index(){
         $list_user = $this->model->select();
+
         $this->view('backend/layout/master.php',[
             'page'=>$_GET['mod'].'/list',
             'list_user'=>$list_user,
@@ -30,6 +32,7 @@ class UserAdminController extends controller{
                 $data['data']['role']=$_POST['role'];
             
             $create_user = $this->model->insert($data['data']);
+           
             header('Location: index.php?mod=user&c=admin&act=index');
     }
     public function edit($id){
@@ -60,5 +63,14 @@ class UserAdminController extends controller{
             'user_detail'=>$user_detail,
         ]);
     }
+    public function timKiem(){
+        $search = $this->model->search($name);
+       
+        $this->view('backend/layout/master.php',[
+            'page'=>$_GET['mod'].'/list',
+            'list_user'=>$list_user,
+            ]);
+    }
+   
 }
 ?>

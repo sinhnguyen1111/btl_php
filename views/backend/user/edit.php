@@ -66,8 +66,8 @@
                                 <label>Quyền</label>
                                 <select class="form-control select2" style="width: 100%;" name="role" >
                                     <option value="<?php echo $user_id['role']?>"><?php echo $user_id['role']?></option>
-                                    <option value="0">Admin</option>
-                                    <option value="1">User</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="User">User</option>
                                 </select>
                             </div>
                         </div>
